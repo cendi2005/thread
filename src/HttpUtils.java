@@ -10,7 +10,8 @@ import java.util.Random;
  * Created by admin on 2017/5/3.
  */
 public class HttpUtils {
-    public static String URL_PATH = "http://avatar.csdn.net/C/6/8/1_bz419927089.jpg";
+    //public static String URL_PATH = "http://avatar.csdn.net/C/6/8/1_bz419927089.jpg";
+    public static String URL_PATH = "http://www.baidu.com/img/baidu_sylogo1.gif";
 
     public HttpUtils() {
         // TODO Auto-generated constructor stub
@@ -25,7 +26,7 @@ public class HttpUtils {
         FileOutputStream fileOutputStream = null;
         try {
 
-            int name = new Random().nextInt(10000);
+            int name = new Random().nextInt(1000);
 
 
             fileOutputStream = new FileOutputStream("/Users/admin/Desktop/thread/src/"+name+".jpg");
@@ -33,6 +34,8 @@ public class HttpUtils {
                 fileOutputStream.write(data, 0, len);
 
             }
+            System.out.println("one pic has download init...");
+
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

@@ -24,9 +24,7 @@ public class CountDownLatchDemo implements Runnable{
 //            Thread.sleep(sleeptime);
 //            System.out.println(Thread.currentThread().getName()+"----->check complete");
             //多线程下载图片
-            for(int i=0;i<100;i++) {
                 HttpUtils.saveImageToDisk();
-            }
             //一个线程直行完毕，计数器减少一个
             end.countDown();
         } catch (Exception e) {
@@ -55,6 +53,17 @@ public class CountDownLatchDemo implements Runnable{
         System.out.println("all fire complte! use "+(t2-t1));
 
 
+
+        //直接顺序下载图片
+//        long t1 = System.currentTimeMillis();
+//
+//        for(int i=0;i<500;i++){
+//            HttpUtils.saveImageToDisk();
+//        }
+//
+//        long t2 = System.currentTimeMillis();
+//
+//        System.out.println("all fire complte! use "+(t2-t1));
 
 
     }
