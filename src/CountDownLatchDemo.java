@@ -7,13 +7,18 @@ import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * Created by admin on 2017/5/3.
  */
 public class CountDownLatchDemo implements Runnable{
-    static final CountDownLatch end = new CountDownLatch(500);
+    static final CountDownLatch end = new CountDownLatch(5000);
     static final CountDownLatchDemo demo = new CountDownLatchDemo();
+
+    private static ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
+    private static Lock readLock = readWriteLock.readLock();
 
     @Override
     public void run() {
@@ -24,7 +29,9 @@ public class CountDownLatchDemo implements Runnable{
 //            Thread.sleep(sleeptime);
 //            System.out.println(Thread.currentThread().getName()+"----->check complete");
             //多线程下载图片
+                //readLock.lock();
                 HttpUtils.saveImageToDisk();
+                //readLock.unlock();
             //一个线程直行完毕，计数器减少一个
             end.countDown();
         } catch (Exception e) {
@@ -33,10 +40,10 @@ public class CountDownLatchDemo implements Runnable{
     }
 
     public static void main(String[] args) throws Exception{
-        ExecutorService exec = Executors.newFixedThreadPool(50);
+        ExecutorService exec = Executors.newFixedThreadPool(100);
 
         long t1 = System.currentTimeMillis();
-        for(int i=0;i<500;i++){
+        for(int i=0;i<5000;i++){
             exec.submit(demo);
         }
 

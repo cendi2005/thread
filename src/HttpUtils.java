@@ -26,10 +26,10 @@ public class HttpUtils {
         FileOutputStream fileOutputStream = null;
         try {
 
-            int name = new Random().nextInt(1000);
+            int name = new Random().nextInt(10000);
 
 
-            fileOutputStream = new FileOutputStream("/Users/admin/Desktop/thread/src/"+name+".jpg");
+            fileOutputStream = new FileOutputStream("/Users/admin/Desktop/thread/src/image/"+name+".jpg");
             while ((len = inputStream.read(data)) != -1) {
                 fileOutputStream.write(data, 0, len);
 
