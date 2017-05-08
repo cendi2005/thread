@@ -6,7 +6,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 
 /*
- * A ball that moves and bounces off the edges of a rectangle
+ * A ball that 1111moves and bounces off the edges of a rectangle
  * */
 public class Ball {
 
