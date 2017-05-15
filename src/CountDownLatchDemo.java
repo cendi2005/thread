@@ -30,7 +30,7 @@ public class CountDownLatchDemo implements Runnable{
 //            System.out.println(Thread.currentThread().getName()+"----->check complete");
             //多线程下载图片
                 //readLock.lock();
-                HttpUtils.saveImageToDisk();
+                //HttpUtils.saveImageToDisk();
                 //readLock.unlock();
             //一个线程直行完毕，计数器减少一个
             end.countDown();
