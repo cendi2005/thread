@@ -25,7 +25,7 @@ public class ThreadPoolDemo1 {
 
         @Override
         public void run() {
-               HttpUtils.saveImageToDisk();
+               //HttpUtils.saveImageToDisk();
         }
     }
 }

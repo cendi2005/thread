@@ -24,7 +24,7 @@ public class ReenterLock implements Runnable {
 
     @Override
     public void run() {
-        for(int j=0;j<100000000;j++){
+        for(int j=0;j<2;j++){
 
             lock.lock();
 
