@@ -20,10 +20,10 @@ public class CountDownLatchDemo2 {
         {
             try
             {
-                System.out.println(this.getName() + "   start, time is" + System.currentTimeMillis());
+                System.out.println(this.getName() + "   start, time is "+ System.currentTimeMillis());
                 Thread.sleep(sleepSecond * 1000);
                 cdl.countDown();//减少一个
-                System.out.println(this.getName() + "   exceute end，time is" + System.currentTimeMillis());
+                System.out.println(this.getName() + "execute , time is " + System.currentTimeMillis());
             }
             catch (InterruptedException e)
             {
@@ -46,7 +46,7 @@ public class CountDownLatchDemo2 {
         {
             try
             {
-                System.out.println(this.getName() + "   waiting ending .. time is" + System.currentTimeMillis());
+                System.out.println(this.getName() + "   waiting start .. time is" + System.currentTimeMillis());
                 cdl.await();
                 System.out.println(this.getName() + "   wait end,time is " + System.currentTimeMillis());
             }
