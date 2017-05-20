@@ -50,13 +50,12 @@ public class TestCountDownLatch {
         System.out.println("其他线程完成任务,main开始继续执行...");
         System.out.println("main任务完成，整个任务进度完成...");
 
-        System.out.println("=====另外一个计数器开始计数======");
-        cd2.await();
-        //cd2.countDown();
-        System.out.println("-1");
-        //cd2.countDown();
-        System.out.println("-2");
-        System.out.println("=====另外一个计数器倒计数完成======");
-        System.out.println("所有的都完成啦");
+
+
+
+
+
+
+
     }
 }
