@@ -1,3 +1,6 @@
+import JUC.HttpUtils2;
+import com.sun.deploy.net.HttpUtils;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -25,7 +28,7 @@ public class ThreadPoolDemo1 {
 
         @Override
         public void run() {
-               //HttpUtils.saveImageToDisk();
+               HttpUtils2.saveImageToDisk();
         }
     }
 }
