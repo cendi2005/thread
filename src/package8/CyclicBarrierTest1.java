@@ -51,7 +51,7 @@ class SubTask extends Thread {
         System.out.println("[并发任务" + name + "]  执行完毕，通知障碍器");
         try {
             //每执行完一项任务就通知障碍器
-            cb.await();
+             cb.await();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (BrokenBarrierException e) {

@@ -14,25 +14,15 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * Created by admin on 2017/5/3.
  */
 public class CountDownLatchDemo implements Runnable{
-    static final CountDownLatch end = new CountDownLatch(5000);
+    static final CountDownLatch end = new CountDownLatch(5);
     static final CountDownLatchDemo demo = new CountDownLatchDemo();
 
-    private static ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
-    private static Lock readLock = readWriteLock.readLock();
 
     @Override
     public void run() {
         //检查任务
         try {
-//            int sleeptime = new Random().nextInt(10)*100;
-//            System.out.println(Thread.currentThread().getName()+"---->sleeptime:"+sleeptime);
-//            Thread.sleep(sleeptime);
-//            System.out.println(Thread.currentThread().getName()+"----->check complete");
-            //多线程下载图片
-                //readLock.lock();
-                //HttpUtils.saveImageToDisk();
-                //readLock.unlock();
-            //一个线程直行完毕，计数器减少一个
+            System.out.println(Thread.currentThread().getName()+"is run.........");
             end.countDown();
         } catch (Exception e) {
             e.printStackTrace();
@@ -40,38 +30,20 @@ public class CountDownLatchDemo implements Runnable{
     }
 
     public static void main(String[] args) throws Exception{
-        ExecutorService exec = Executors.newFixedThreadPool(100);
+        ExecutorService exec = Executors.newFixedThreadPool(5);
 
         long t1 = System.currentTimeMillis();
-        for(int i=0;i<5000;i++){
+        for(int i=0;i<5;i++){
             exec.submit(demo);
         }
-
         //等待检查
         end.await();
         //发射火箭
         System.out.println("fire!");
-
         //全部执行完了，结束
         exec.shutdown();
-
         long t2 = System.currentTimeMillis();
-
         System.out.println("all fire complte! use "+(t2-t1));
-
-
-
-        //直接顺序下载图片
-//        long t1 = System.currentTimeMillis();
-//
-//        for(int i=0;i<500;i++){
-//            HttpUtils.saveImageToDisk();
-//        }
-//
-//        long t2 = System.currentTimeMillis();
-//
-//        System.out.println("all fire complte! use "+(t2-t1));
-
 
     }
 

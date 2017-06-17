@@ -1,4 +1,7 @@
 
+import org.omg.PortableServer.THREAD_POLICY_ID;
+import package4.ThreadPool;
+
 import java.util.concurrent.locks.LockSupport;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -9,9 +12,20 @@ public class Test {
     public static void main(String[] args) {
 
 
-        System.out.println("aaaaa");
+
+       Thread t = Thread.currentThread();
+
+
+        System.out.println("start...");
+        LockSupport.park(t);
+        System.out.println("parking....");
+        LockSupport.unpark(t);
+        System.out.println("unparking...");
+
 
     }
+
+
 
 
 
