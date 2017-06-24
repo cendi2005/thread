@@ -19,8 +19,11 @@ public class CyclicBarrierTest {
 
     public static void main(String[] args) {
         System.out.println("工作线程开始工作。。。。。。。。");
+
+        System.out.println(Thread.currentThread().toString());
         cb = new CyclicBarrier(SIZE);
-        for (int i = 0; i < SIZE; i++) {
+
+        for (int i = 0; i < 3; i++) {
             new MyTask().start();
         }
 

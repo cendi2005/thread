@@ -1,3 +1,6 @@
+import JUC.HttpUtils2;
+import package4.HttpUtils1;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -14,7 +17,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * Created by admin on 2017/5/3.
  */
 public class CountDownLatchDemo implements Runnable{
-    static final CountDownLatch end = new CountDownLatch(5);
+    static final CountDownLatch end = new CountDownLatch(3000);
     static final CountDownLatchDemo demo = new CountDownLatchDemo();
 
 
@@ -22,7 +25,7 @@ public class CountDownLatchDemo implements Runnable{
     public void run() {
         //检查任务
         try {
-            System.out.println(Thread.currentThread().getName()+"is run.........");
+                HttpUtils2.saveImageToDisk(100);
             end.countDown();
         } catch (Exception e) {
             e.printStackTrace();
@@ -30,10 +33,10 @@ public class CountDownLatchDemo implements Runnable{
     }
 
     public static void main(String[] args) throws Exception{
-        ExecutorService exec = Executors.newFixedThreadPool(5);
+        ExecutorService exec = Executors.newFixedThreadPool(100);
 
         long t1 = System.currentTimeMillis();
-        for(int i=0;i<5;i++){
+        for(int i=0;i<3000;i++){
             exec.submit(demo);
         }
         //等待检查
@@ -43,7 +46,7 @@ public class CountDownLatchDemo implements Runnable{
         //全部执行完了，结束
         exec.shutdown();
         long t2 = System.currentTimeMillis();
-        System.out.println("all fire complte! use "+(t2-t1));
+        System.out.println("all fire complte! use "+(t2-t1)/1000+"seconds...");
 
     }
 

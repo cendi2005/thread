@@ -12,15 +12,17 @@ import java.util.Random;
  * Created by admin on 2017/5/3.
  */
 public class HttpUtils2 {
-    //public static String URL_PATH = "http://avatar.csdn.net/C/6/8/1_bz419927089.jpg";
-    public static String URL_PATH = "http://www.baidu.com/img/baidu_sylogo1.gif";
+    public static String URL_PATH = "http://avatar.csdn.net/C/6/8/1_bz419927089.jpg";
+    //public static String URL_PATH = "http://www.baidu.com/img/baidu_sylogo1.gif";
 
     public HttpUtils2() {
         // TODO Auto-generated constructor stub
     }
 
     //把从服务器获得图片的输入流InputStream写到本地磁盘
-    public static void saveImageToDisk() {
+    public static void saveImageToDisk(int i) {
+
+
 
         InputStream inputStream = getInputStream();
         byte[] data = new byte[1024];
@@ -31,6 +33,9 @@ public class HttpUtils2 {
             int name = new Random().nextInt(10000);
 
 
+            if(i==2){
+                throw new IOException();
+            }
             fileOutputStream = new FileOutputStream("/Users/admin/Desktop/thread/src/image/"+name+".jpg");
             while ((len = inputStream.read(data)) != -1) {
                 fileOutputStream.write(data, 0, len);

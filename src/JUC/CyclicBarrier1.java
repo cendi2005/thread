@@ -39,7 +39,7 @@ public class CyclicBarrier1 {
 //
 //                System.out.println();
 //                map.put(String.valueOf(Thread.currentThread().getId()), new Random().nextInt(10));
-                HttpUtils2.saveImageToDisk();
+                HttpUtils2.saveImageToDisk(1);
                 try {
                     /**
                      * 被屏障拦截
