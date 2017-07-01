@@ -7,7 +7,9 @@ import java.util.concurrent.BlockingQueue;
 public class BlockingQueueDemo {
     public static void main(String[] args)
     {
-        final BlockingQueue<String> bq = new ArrayBlockingQueue<String>(10);
+
+        //·ArrayBlockingQueue：一个由数组结构组成的有界阻塞队列。
+        final BlockingQueue<String> bq = new ArrayBlockingQueue<String>(5);
         Runnable producerRunnable = new Runnable()
         {
             int i = 0;
@@ -19,7 +21,7 @@ public class BlockingQueueDemo {
                     {
                         System.out.println("product a thing" + i++);
                         bq.put(i + "");
-                        Thread.sleep(1000);//生产快
+                        Thread.sleep(500);//生产快
                     }
                     catch (InterruptedException e)
                     {
@@ -37,7 +39,7 @@ public class BlockingQueueDemo {
                     try
                     {
                         System.out.println("get a thing" + bq.take());
-                        Thread.sleep(3000);//消费慢
+                        Thread.sleep(1000);//消费慢
                     }
                     catch (InterruptedException e)
                     {
@@ -50,5 +52,9 @@ public class BlockingQueueDemo {
         Thread customerThread = new Thread(customerRunnable);
         producerThread.start();
         customerThread.start();
+        Thread producerThread1 = new Thread(producerRunnable);
+        Thread customerThread1 = new Thread(customerRunnable);
+        producerThread1.start();
+        customerThread1.start();
     }
 }
