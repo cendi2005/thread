@@ -33,15 +33,13 @@ public class HttpUtils2 {
             int name = new Random().nextInt(10000);
 
 
-            if(i==2){
-                throw new IOException();
-            }
+
             fileOutputStream = new FileOutputStream("/Users/admin/Desktop/thread/src/image/"+name+".jpg");
             while ((len = inputStream.read(data)) != -1) {
                 fileOutputStream.write(data, 0, len);
 
             }
-            System.out.println("one pic has download init...");
+            System.out.println("one pic has download init..."+System.currentTimeMillis());
 
         } catch (IOException e) {
             // TODO Auto-generated catch block
