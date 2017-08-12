@@ -9,7 +9,7 @@ import java.util.concurrent.Executors;
 public class TestFixedThreadPool {
     public static void main(String[] args) {
         //创建一个可重用固定线程数的线程池
-        ExecutorService pool = Executors.newFixedThreadPool(2);
+        ExecutorService pool = Executors.newFixedThreadPool(1);
         //创建实现了Runnable接口对象，Thread对象当然也实现了Runnable接口
         Thread t1 = new MyThread();
         Thread t2 = new MyThread();
@@ -23,6 +23,8 @@ public class TestFixedThreadPool {
         pool.execute(t4);
         pool.execute(t5);
         //关闭线程池
-        pool.shutdown();
+
+//        pool.shutdown();
+        pool.shutdownNow();
     }
 }
