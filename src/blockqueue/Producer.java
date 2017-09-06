@@ -7,7 +7,7 @@ import java.util.concurrent.ArrayBlockingQueue;
  */
 public class Producer implements Runnable{
 
-    //容器
+    //需要一个堵塞队列，作为参数来运行
     private final ArrayBlockingQueue<Bread> queue;
 
     public Producer(ArrayBlockingQueue<Bread> queue){

@@ -8,7 +8,6 @@ import java.util.concurrent.Future;
 public class RunnableTestMain {
     public static void main(String[] args) {
         ExecutorService pool = Executors.newFixedThreadPool(2);
-
         /**
          * execute(Runnable x) 没有返回值。可以执行任务，但无法判断任务是否成功完成。
          */
@@ -25,7 +24,7 @@ public class RunnableTestMain {
             }
         } catch (InterruptedException e) {
         } catch (ExecutionException e) {
-            //否则我们可以看看任务失败的原因是什么
+            //否则我们可以看看任务失败的原因是什么N
             System.out.println(e.getCause().getMessage());
         }
 
