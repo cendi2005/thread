@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class PoolTest {
 
     public static void main(String[] args) {
+        //不提倡直接使用这个
         ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 10, 200, TimeUnit.MILLISECONDS,
                 new ArrayBlockingQueue<Runnable>(5));
 
