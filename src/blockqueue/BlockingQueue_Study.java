@@ -19,6 +19,7 @@ public class BlockingQueue_Study {
      * 插入操作：插入元素为null时将抛出NullPointerException.
      *
      */
+
     @Test
     public void BlockingQueueInsertTest() {
         // add-AbstractQueue

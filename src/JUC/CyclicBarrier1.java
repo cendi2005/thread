@@ -20,8 +20,8 @@ public class CyclicBarrier1 {
         /**
          * CyclicBarrier会阻塞5个线程，当5个线程都到达屏障时会优先执行Action的run()方法
          */
-        CyclicBarrier c = new CyclicBarrier(500,new Action());
-        for (int i = 0; i < 500; i++) {
+        CyclicBarrier c = new CyclicBarrier(5,new Action());
+        for (int i = 0; i < 5; i++) {
             new Thread(()->{
 //                /**
 //                 * 将计算完成的结果放入Map中

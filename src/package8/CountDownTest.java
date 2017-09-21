@@ -8,7 +8,7 @@ import java.util.concurrent.CountDownLatch;
  */
 public class CountDownTest {
     public static void main(String[] args) {
-        CountDownLatch latch = new CountDownLatch(4);
+        CountDownLatch latch = new CountDownLatch(3);
 
         System.out.println("in " + Thread.currentThread().getName() + "...");
         System.out.println("before latch.await()...");
