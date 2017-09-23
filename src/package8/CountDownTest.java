@@ -26,6 +26,8 @@ public class CountDownTest {
                 }
             }.start();
         }
+
+
         try {
             latch.await();
         } catch (InterruptedException e) {

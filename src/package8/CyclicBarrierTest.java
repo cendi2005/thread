@@ -11,7 +11,7 @@ import java.util.concurrent.CyclicBarrier;
  */
 public class CyclicBarrierTest {
 
-    private static int SIZE = 4;
+    private static int SIZE = 16;
 
     private static Map result = new HashMap();
 
@@ -23,7 +23,7 @@ public class CyclicBarrierTest {
         System.out.println(Thread.currentThread().toString());
         cb = new CyclicBarrier(SIZE);
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 16; i++) {
             new MyTask().start();
         }
 

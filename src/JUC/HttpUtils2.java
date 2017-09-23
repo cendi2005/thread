@@ -34,7 +34,7 @@ public class HttpUtils2 {
 
 
 
-            fileOutputStream = new FileOutputStream("/Users/admin/Desktop/thread/src/image/"+name+".jpg");
+            fileOutputStream = new FileOutputStream("/Users/admin/Desktop/thread/src/img/"+name+".jpg");
             while ((len = inputStream.read(data)) != -1) {
                 fileOutputStream.write(data, 0, len);
 

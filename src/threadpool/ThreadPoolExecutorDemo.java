@@ -7,14 +7,14 @@ import java.util.concurrent.TimeUnit;
 public class ThreadPoolExecutorDemo {
     public static void main(String[] args) {
         ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 10, 200, TimeUnit.MILLISECONDS,
-                new ArrayBlockingQueue<Runnable>(5));
+                new ArrayBlockingQueue<Runnable>(50));
 
 
 
 
 
 
-        for(int i=0;i<15;i++){
+        for(int i=0;i<40;i++){
             MyTask myTask = new MyTask(i);
             executor.execute(myTask);
             System.out.println("线程池中线程数目："+executor.getPoolSize()+"，队列中等待执行的任务数目："+
@@ -35,7 +35,7 @@ class MyTask implements Runnable {
     public void run() {
         System.out.println("正在执行task "+taskNum);
         try {
-            Thread.currentThread().sleep(4000);
+            Thread.currentThread().sleep(40);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
