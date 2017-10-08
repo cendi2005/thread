@@ -8,9 +8,9 @@ public class ReadAndWriteLock2 {
         lock.readLock().lock();
         try{
             System.out.println("start time:"+System.currentTimeMillis());
-            for(int i=0; i<5; i++){
+            for(int i=0; i<5000000; i++){
                 try {
-                    Thread.sleep(20);
+                    Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -18,6 +18,8 @@ public class ReadAndWriteLock2 {
             }
             System.out.println(thread.getName() + ":读操作完毕！");
             System.out.println("end time:"+System.currentTimeMillis());
+
+
         }finally{
             lock.readLock().unlock();
         }
@@ -38,5 +40,8 @@ public class ReadAndWriteLock2 {
                 lock.get(Thread.currentThread());
             }
         }).start();
+
+
+
     }
 }

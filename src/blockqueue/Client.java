@@ -1,6 +1,6 @@
 package blockqueue;
 
-import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * Created by admin on 2017/7/3.
@@ -11,14 +11,12 @@ public class Client {
      * @param args
      */
     public static void main(String[] args) {
-        int capacity = 10;
-        ArrayBlockingQueue<Bread> queue = new ArrayBlockingQueue<Bread>(capacity);
+        ConcurrentLinkedQueue list =new ConcurrentLinkedQueue();
+        list.add("aa");
 
-        new Thread(new Producer(queue)).start();
-        new Thread(new Producer(queue)).start();
-        new Thread(new Consumer(queue)).start();
-        new Thread(new Consumer(queue)).start();
-        new Thread(new Consumer(queue)).start();
+
     }
+
+
 
 }

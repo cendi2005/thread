@@ -56,34 +56,20 @@ public class FutureTaskForMultiCompute {
             return this.taskName;
         }
 
-//        @Override
-//        public Integer call() throws Exception {
-//            // TODO Auto-generated method stub
-//
-//            for (int i = 0; i < 100; i++) {
-//                result =+ i;
-//            }
-//            // 休眠5秒钟，观察主线程行为，预期的结果是主线程会继续执行，到要取得FutureTask的结果是等待直至完成。
-//            Thread.sleep(5000);
-//            System.out.println("子线程计算任务: "+taskName+" 执行完成!");
-//            return result;
-//        }
-
-
-        /**
-         * Computes a result, or throws an exception if unable to do so.
-         *
-         * @return computed result
-         * @throws Exception if unable to compute a result
-         */
         @Override
         public Integer call() throws Exception {
-            for (int i = 0; i <100 ; i++) {
-                result+=i;
+            // TODO Auto-generated method stub
+
+            for (int i = 0; i < 100; i++) {
+                result =+ i;
             }
-            Thread.sleep(1000);
-            System.out.println("子线程计算任务:"+Thread.currentThread().getName()+"执行完成");
+            // 休眠5秒钟，观察主线程行为，预期的结果是主线程会继续执行，到要取得FutureTask的结果是等待直至完成。
+            Thread.sleep(5000);
+            System.out.println("子线程计算任务: "+taskName+" 执行完成!");
             return result;
         }
+
+
+
     }
 }

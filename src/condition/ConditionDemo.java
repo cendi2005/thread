@@ -1,12 +1,9 @@
-package package8;
+package condition;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-/**
- * Created by admin on 2017/6/21.
- */
 public class ConditionDemo {
     private static Lock lock = new ReentrantLock();
     private static Condition condition = lock.newCondition();
@@ -52,5 +49,4 @@ public class ConditionDemo {
         thread2.start();
 
     }
-
 }
