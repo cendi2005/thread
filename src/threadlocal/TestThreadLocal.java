@@ -1,17 +1,17 @@
 package threadlocal;
 
+import java.util.Random;
+
 /**
  * ThreadLocal和synchronized的区别?
  * */
 public class TestThreadLocal {
-    private static final ThreadLocal<Integer> value = new ThreadLocal<Integer>() {
+    private static final ThreadLocal<String> value = new ThreadLocal<String>() {
         @Override
-        protected Integer initialValue() {
-            return 0;
+        protected String initialValue() {
+            return 0 + "";
         }
     };
-
-
 
 
     public static void main(String[] args) {
@@ -29,9 +29,7 @@ public class TestThreadLocal {
 
         public void run() {
             System.out.println("线程" + index + "的初始value:" + value.get());
-            for (int i = 0; i < 10; i++) {
-                value.set(value.get() + i);
-            }
+            value.set("connection:" + value.get() + new Random().nextInt(100));
             System.out.println("线程" + index + "的累加value:" + value.get());
         }
     }
