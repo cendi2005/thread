@@ -2,7 +2,7 @@ package join.WaitAndNotify;
 
 import java.util.Random;
 
-public class Producer {
+public class Producer implements Runnable{
     private Object lock;
 
     public Producer(Object lock)
@@ -30,6 +30,15 @@ public class Producer {
         catch (InterruptedException e)
         {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void run() {
+        while (true)
+        {
+            //不加this，线程就会错乱
+            this.setValue();
         }
     }
 }

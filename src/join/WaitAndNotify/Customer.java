@@ -1,6 +1,6 @@
 package join.WaitAndNotify;
 
-public class Customer {
+public class Customer implements Runnable{
     private Object lock;
 
     public Customer(Object lock)
@@ -29,5 +29,12 @@ public class Customer {
         {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void run() {
+       while (true){
+           this.getValue();
+       }
     }
 }
