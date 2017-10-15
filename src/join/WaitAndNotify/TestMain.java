@@ -27,6 +27,10 @@ public class TestMain {
 //                }
 //            }
 //        };
+        /**
+         * 多个线程轮流生产，但资源永远只会出现一份，被某个Lock占有
+         *
+         * */
         Thread producerThread = new Thread(producerRunnable);
         Thread CustomerThread = new Thread(customerRunnable);
 
