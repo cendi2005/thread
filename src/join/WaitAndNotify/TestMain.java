@@ -28,7 +28,6 @@ public class TestMain {
         Thread producerThread = new Thread(producerRunnable);
         Thread CustomerThread = new Thread(customerRunnable);
 
-
         Thread producerThread1 = new Thread(producerRunnable);
         Thread CustomerThread1 = new Thread(customerRunnable);
 
