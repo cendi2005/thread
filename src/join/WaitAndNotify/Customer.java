@@ -1,27 +1,35 @@
 package join.WaitAndNotify;
 
 public class Customer implements Runnable{
-    private Object lock;
+    //对象监视器
+    private Object monitor;
 
-    public Customer(Object lock)
+    public Customer(Object monitor)
     {
-        this.lock = lock;
+        this.monitor = monitor;
     }
+
+//    synchronized (obj) {
+//     *         while (&lt;condition does not hold&gt;)
+//     *             obj.wait();
+//     *         ... // Perform action appropriate to condition
+//     *     }
+//
 
     public void getValue()
     {
         try
         {
-            synchronized (lock)
+            synchronized (monitor)
             {
                 Thread.sleep(1000);
                 //如果灭有产品，就等待
                 if (ValueObject.value.equals(""))
-                    lock.wait();
+                    monitor.wait();
                 System.out.println(Thread.currentThread().getName()+"Get的值是：" + ValueObject.value);
                 ValueObject.value = "";
 //                lock.notify();
-                  lock.notifyAll();
+                monitor.notifyAll();
 
             }
         }
@@ -34,7 +42,31 @@ public class Customer implements Runnable{
     @Override
     public void run() {
        while (true){
-           this.getValue();
+//           this.getValue();
+
+           synchronized (monitor)
+           {
+               try {
+                   Thread.sleep(1000);
+               } catch (InterruptedException e) {
+                   e.printStackTrace();
+               }
+               //如果灭有产品，就等待
+               if (ValueObject.value.equals(""))
+                   try {
+                       monitor.wait();
+                   } catch (InterruptedException e) {
+                       e.printStackTrace();
+                   }
+               System.out.println(Thread.currentThread().getName()+"Get的值是：" + ValueObject.value);
+               ValueObject.value = "";
+//                lock.notify();
+               monitor.notifyAll();
+
+           }
+
+
+
        }
     }
 }

@@ -1,5 +1,6 @@
 package join.WaitAndNotify;
 
+import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -19,8 +20,9 @@ public class QueueWaitAndNotifyDemo {
                     {
                         try
                         {
-                            System.out.println("我生产了一个" + i++);
-                            bq.put(i + "");
+                            String s = ""+new Random().nextInt(1000);
+                            System.out.println("我生产了一个" + s);
+                            bq.put(s);
                             Thread.sleep(1000);
                         }
                         catch (InterruptedException e)
@@ -39,7 +41,7 @@ public class QueueWaitAndNotifyDemo {
                         try
                         {
                             System.out.println("我消费了一个" + bq.take());
-                            Thread.sleep(3000);
+                            Thread.sleep(1000);
                         }
                         catch (InterruptedException e)
                         {
@@ -49,9 +51,13 @@ public class QueueWaitAndNotifyDemo {
                 }
             };
             Thread producerThread = new Thread(producerRunnable);
+            Thread producerThread1 = new Thread(producerRunnable);
             Thread customerThread = new Thread(customerRunnable);
+            Thread customerThread1 = new Thread(customerRunnable);
             producerThread.start();
+            producerThread1.start();
             customerThread.start();
+            customerThread1.start();
         }
     }
 }
