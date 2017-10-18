@@ -1,5 +1,7 @@
 package join.WaitAndNotify;
 
+import java.util.concurrent.TimeUnit;
+
 public class Customer implements Runnable{
     //对象监视器
     private Object monitor;
@@ -22,7 +24,8 @@ public class Customer implements Runnable{
         {
             synchronized (monitor)
             {
-                Thread.sleep(1000);
+//                Thread.sleep(1000);
+                TimeUnit.SECONDS.sleep(1);
                 //如果灭有产品，就等待
                 if (ValueObject.value.equals(""))
                     monitor.wait();

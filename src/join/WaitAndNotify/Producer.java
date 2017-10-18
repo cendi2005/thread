@@ -1,6 +1,7 @@
 package join.WaitAndNotify;
 
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class Producer implements Runnable{
     private Object monitor;
@@ -16,7 +17,7 @@ public class Producer implements Runnable{
         {
             synchronized (monitor)
             {
-                Thread.sleep(1000);
+                TimeUnit.SECONDS.sleep(1);
                 //如果有产品了，就不生产
                 if (!ValueObject.value.equals(""))
                     monitor.wait();
