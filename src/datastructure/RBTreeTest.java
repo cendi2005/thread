@@ -1,5 +1,7 @@
 package datastructure;
 
+import java.util.HashMap;
+
 /**
  * Java 语言: 二叉查找树
  *
@@ -13,10 +15,16 @@ public class RBTreeTest {
     *     2
     * 1         3
     *
+    *   5
+    *       22
+    *
+    *       ---》66
+    *
     *
     * **/
 
-    private static final int a[] = {2, 1, 3};
+//    private static final int a[] = {3,2,1};
+    private static final int a[] = {9,10,11,19,23};
 //    private static final int a[] = {10, 40, 30, 60, 90, 70, 20, 50, 80};
     private static final boolean mDebugInsert = false;    // "插入"动作的检测开关(false，关闭；true，打开)
     private static final boolean mDebugDelete = false;    // "删除"动作的检测开关(false，关闭；true，打开)
@@ -33,12 +41,12 @@ public class RBTreeTest {
         for(i=0; i<ilen; i++) {
             tree.insert(a[i]);
             // 设置mDebugInsert=true,测试"添加函数"
-            if (mDebugInsert) {
-                System.out.printf("== 添加节点: %d\n", a[i]);
-                System.out.printf("== 树的详细信息: \n");
-                tree.print();
-                System.out.printf("\n");
-            }
+//            if (mDebugInsert) {
+//                System.out.printf("== 添加节点: %d\n", a[i]);
+//                System.out.printf("== 树的详细信息: \n");
+//                tree.print();
+//                System.out.printf("\n");
+//            }
         }
 
         System.out.printf("== 前序遍历: ");
@@ -58,19 +66,22 @@ public class RBTreeTest {
         System.out.printf("\n");
 
         // 设置mDebugDelete=true,测试"删除函数"
-        if (mDebugDelete) {
-            for(i=0; i<ilen; i++)
-            {
-                tree.remove(a[i]);
-
-                System.out.printf("== 删除节点: %d\n", a[i]);
-                System.out.printf("== 树的详细信息: \n");
-                tree.print();
-                System.out.printf("\n");
-            }
-        }
+//        if (mDebugDelete) {
+//            for(i=0; i<ilen; i++)
+//            {
+//                tree.remove(a[i]);
+//
+//                System.out.printf("== 删除节点: %d\n", a[i]);
+//                System.out.printf("== 树的详细信息: \n");
+//                tree.print();
+//                System.out.printf("\n");
+//            }
+//        }
 
         // 销毁二叉树
         tree.clear();
+
+
+
     }
 }

@@ -78,11 +78,14 @@ public class RBTree<T extends Comparable<T>> {
             preOrder(tree.left);
             preOrder(tree.right);
         }
+
     }
 
     public void preOrder() {
         preOrder(mRoot);
     }
+
+
 
     /*
      * 中序遍历"红黑树"
@@ -93,12 +96,12 @@ public class RBTree<T extends Comparable<T>> {
             System.out.print(tree.key+" ");
             inOrder(tree.right);
         }
+
     }
 
     public void inOrder() {
         inOrder(mRoot);
     }
-
 
     /*
      * 后序遍历"红黑树"
@@ -131,7 +134,9 @@ public class RBTree<T extends Comparable<T>> {
             return search(x.right, key);
         else
             return x;
+
     }
+
 
     public RBTNode<T> search(T key) {
         return search(mRoot, key);
@@ -155,6 +160,8 @@ public class RBTree<T extends Comparable<T>> {
         return x;
     }
 
+
+
     public RBTNode<T> iterativeSearch(T key) {
         return iterativeSearch(mRoot, key);
     }
@@ -175,7 +182,6 @@ public class RBTree<T extends Comparable<T>> {
         RBTNode<T> p = minimum(mRoot);
         if (p != null)
             return p.key;
-
         return null;
     }
 
@@ -185,7 +191,6 @@ public class RBTree<T extends Comparable<T>> {
     private RBTNode<T> maximum(RBTNode<T> tree) {
         if (tree == null)
             return null;
-
         while(tree.right != null)
             tree = tree.right;
         return tree;
@@ -195,34 +200,76 @@ public class RBTree<T extends Comparable<T>> {
         RBTNode<T> p = maximum(mRoot);
         if (p != null)
             return p.key;
-
         return null;
     }
 
+
+    /**
+     *
+     *
+     *
+     *
+     *
+     *
+     * */
     /*
      * 找结点(x)的后继结点。即，查找"红黑树中数据值大于该结点"的"最小结点"。
+     * 大于X的最小值（）
+     * 前驱和后继要结合遍历顺序来谈，某个节点在特定遍历顺序下序列中的前后两个节点就是它的前驱和后继
+
      */
     public RBTNode<T> successor(RBTNode<T> x) {
         // 如果x存在右孩子，则"x的后继结点"为 "以其右孩子为根的子树的最小结点"。
+        /**
+         *               24
+         *            32     68(x)
+         *                      77
+         *                   72    83
+         *
+         * */
+
         if (x.right != null)
             return minimum(x.right);
 
         // 如果x没有右孩子。则x有以下两种可能：
         // (01) x是"一个左孩子"，则"x的后继结点"为 "它的父结点"。
+
+
         // (02) x是"一个右孩子"，则查找"x的最低的父结点，并且该父结点要具有左孩子"，找到的这个"最低的父结点"就是"x的后继结点"。
+
+        /***
+         *     19
+         *10        23
+         *  11
+         *      13
+         *          17(x)
+         *
+         *
+         *
+         * */
+
         RBTNode<T> y = x.parent;
         while ((y!=null) && (x==y.right)) {
             x = y;
             y = y.parent;
         }
-
         return y;
+
     }
 
     /*
      * 找结点(x)的前驱结点。即，查找"红黑树中数据值小于该结点"的"最大结点"。
      */
     public RBTNode<T> predecessor(RBTNode<T> x) {
+
+
+//        /
+//                 *
+//                *10
+//              9           19
+//                *       11   23
+//                *
+//        /*
         // 如果x存在左孩子，则"x的前驱结点"为 "以其左孩子为根的子树的最大结点"。
         if (x.left != null)
             return maximum(x.left);
@@ -251,13 +298,15 @@ public class RBTree<T extends Comparable<T>> {
      *     /   \                       /  \
      *    ly   ry                     lx  ly
      *
+     *1
+     *  2            2
+     *      3     1     3
+     *
      *
      */
     private void leftRotate(RBTNode<T> x) {
         // 设置x的右孩子为y
         RBTNode<T> y = x.right;
-
-
 
         // 将 “y的左孩子” 设为 “x的右孩子”；
         // 如果y的左孩子非空，将 “x” 设为 “y的左孩子的父亲”
@@ -267,7 +316,6 @@ public class RBTree<T extends Comparable<T>> {
 
         // 将 “x的父亲” 设为 “y的父亲”
         y.parent = x.parent;
-
 
         if (x.parent == null) {
             this.mRoot = y;            // 如果 “x的父亲” 是空节点，则将y设为根节点
@@ -282,6 +330,7 @@ public class RBTree<T extends Comparable<T>> {
         y.left = x;
         // 将 “x的父节点” 设为 “y”
         x.parent = y;
+
     }
     /*
     *
@@ -300,13 +349,7 @@ public class RBTree<T extends Comparable<T>> {
  y   z                            \
                                    z
     *
-    *
-    *
     * **/
-
-
-
-
 
     /*
      * 对红黑树的节点(y)进行右旋转
@@ -358,68 +401,86 @@ public class RBTree<T extends Comparable<T>> {
      *
      * 参数说明：
      *     node 插入的结点        // 对应《算法导论》中的z
+     *
+     *     1
+     *       2
+     *         3
+     *
+     *
+     *
+     *
      */
     private void insertFixUp(RBTNode<T> node) {
         RBTNode<T> parent, gparent;
 
         // 若“父节点存在，并且父节点的颜色是红色”
-        while (((parent = parentOf(node))!=null) && isRed(parent)) {
-            gparent = parentOf(parent);
+        //不可能同时存在父亲节点是红色，插入的节点又是红色，不然就违背了红黑树的性质
+        while (((parent = parentOf(node))!=null) && isRed(parent)) {//6
+
+            gparent = parentOf(parent);//祖父节点
 
             //若“父节点”是“祖父节点的左孩子”
-            if (parent == gparent.left) {
+            if (parent == gparent.left) {//5
                 // Case 1条件：叔叔节点是红色
                 RBTNode<T> uncle = gparent.right;
-                if ((uncle!=null) && isRed(uncle)) {
+                if ((uncle!=null) && isRed(uncle)) {//2
                     setBlack(uncle);
                     setBlack(parent);
                     setRed(gparent);
                     node = gparent;
                     continue;
-                }
+                }//2
 
                 // Case 2条件：叔叔是黑色，且当前节点是右孩子
-                if (parent.right == node) {
+                if (parent.right == node) {//1
                     RBTNode<T> tmp;
                     leftRotate(parent);
                     tmp = parent;
                     parent = node;
                     node = tmp;
-                }
+                }//1
 
                 // Case 3条件：叔叔是黑色，且当前节点是左孩子。
                 setBlack(parent);
                 setRed(gparent);
                 rightRotate(gparent);
+
+
             } else {    //若“z的父节点”是“z的祖父节点的右孩子”
                 // Case 1条件：叔叔节点是红色
                 RBTNode<T> uncle = gparent.left;
-                if ((uncle!=null) && isRed(uncle)) {
+                if ((uncle!=null) && isRed(uncle)) {//3
                     setBlack(uncle);
                     setBlack(parent);
                     setRed(gparent);
                     node = gparent;
                     continue;
-                }
+                }//3
 
                 // Case 2条件：叔叔是黑色，且当前节点是左孩子
-                if (parent.left == node) {
+                if (parent.left == node) {//4
                     RBTNode<T> tmp;
                     rightRotate(parent);
                     tmp = parent;
                     parent = node;
                     node = tmp;
-                }
+                }//4
 
                 // Case 3条件：叔叔是黑色，且当前节点是右孩子。
                 setBlack(parent);
                 setRed(gparent);
                 leftRotate(gparent);
-            }
-        }
+            }//5
+
+        }//6
 
         // 将根节点设为黑色
         setBlack(this.mRoot);
+
+        //
+        //
+
+        //
     }
 
     /*
@@ -569,6 +630,10 @@ public class RBTree<T extends Comparable<T>> {
      *
      * 参数说明：
      *     node 删除的结点
+     *         99
+     *    88          101
+     * 77   89    100    102
+     *
      */
     private void remove(RBTNode<T> node) {
         RBTNode<T> child, parent;
