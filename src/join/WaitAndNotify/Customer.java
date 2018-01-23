@@ -11,6 +11,9 @@ public class Customer implements Runnable{
         this.monitor = monitor;
     }
 
+
+
+
 //    synchronized (obj) {
 //     *         while (&lt;condition does not hold&gt;)
 //     *             obj.wait();
@@ -50,7 +53,7 @@ public class Customer implements Runnable{
            synchronized (monitor)
            {
                try {
-                   Thread.sleep(1000);
+                   TimeUnit.SECONDS.sleep(1);
                } catch (InterruptedException e) {
                    e.printStackTrace();
                }
