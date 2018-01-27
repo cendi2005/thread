@@ -1,5 +1,6 @@
 package waitjoinnotify;
 
+import java.util.Random;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -87,11 +88,8 @@ class Resource {
     public  void add() {
 
         try {
-            System.out.println(Thread.currentThread().getName()+" add");
-
-            // add 虽然是同步
-            resourceQueue.put(1);
-            //但是当这里打印的时候，可能其他线程已经取出来了，所以造成add后还是显示0个资源
+            resourceQueue.put(new Random().nextInt(100));
+            //这里有问题，add成功，但是size显示0
             System.out.println(System.nanoTime()+"_生产者" + Thread.currentThread().getName() + "生产一件资源," + "当前资源池有" + resourceQueue.size() + "个资源");
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -103,8 +101,8 @@ class Resource {
      */
     public  void remove() {
         try {
-            int x = (int)resourceQueue.take();
-            System.out.println(System.nanoTime()+"_消费者" + Thread.currentThread().getName() + "消耗一件资源," + "当前资源池有" + resourceQueue.size() + "个资源");
+//            resourceQueue.take();
+            System.out.println(System.nanoTime()+"_消费者" + Thread.currentThread().getName() + "消耗一件资源," + "当前资源池有" + resourceQueue.size() + "个资源,"+resourceQueue.take());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
